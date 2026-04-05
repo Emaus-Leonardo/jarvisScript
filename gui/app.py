@@ -9,7 +9,6 @@ import threading
 import queue
 import time
 import os
-import sys
 import numpy as np
 import sounddevice as sd
 
@@ -18,13 +17,13 @@ from config import (
     ENERGY_THRESHOLD, CLAPS_REQUIRED, CLAP_WINDOW,
     FINGERPRINT_FILE, CLAP_SIMILARITY_THRESHOLD,
 )
-from fingerprint import (
+from core.fingerprint import (
     load_fingerprint, extract_spectral_features, compute_similarity,
     is_clap, save_fingerprint, build_fingerprint_from_samples,
 )
-from actions import execute_action
-from voice import VoiceListener
-from calibrate import detect_impacts
+from core.actions import execute_action
+from core.voice import VoiceListener
+from core.calibrate import detect_impacts
 
 
 # --- Cores do tema ---
@@ -44,8 +43,6 @@ BTN_HOVER = "#2a2a4a"
 
 class JarvisGUI:
     def __init__(self):
-        os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
         self.root = tk.Tk()
         self.root.title("JARVIS")
         self.root.geometry("720x620")
@@ -474,8 +471,3 @@ class JarvisGUI:
 
     def run(self):
         self.root.mainloop()
-
-
-if __name__ == "__main__":
-    app = JarvisGUI()
-    app.run()

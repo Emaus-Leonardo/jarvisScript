@@ -15,7 +15,7 @@ CLAPS_REQUIRED = 2               # quantas palmas para ativar
 CLAP_WINDOW = 2.0                # segundos máx entre primeira e última palma
 
 # --- Fingerprint espectral ---
-FINGERPRINT_FILE = "clap_fingerprint.json"
+FINGERPRINT_FILE = "data/clap_fingerprint.json"
 N_FFT = 2048
 FREQ_BANDS = [
     (200, 800),     # banda baixa — palma tem energia aqui

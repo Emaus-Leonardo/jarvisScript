@@ -14,7 +14,7 @@ build/
 dist/
 *.egg-info/
 *.egg
-
+ 
 # IDE
 .vscode/
 .idea/
@@ -32,3 +32,10 @@ Desktop.ini
 
 # Logs
 *.log
+
+# PyInstaller
+dist/
+*.spec
+
+# Claude
+.claude/

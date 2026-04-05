@@ -9,7 +9,7 @@ import sounddevice as sd
 import time
 
 from config import SAMPLE_RATE, DETECTION_WINDOW, ENERGY_THRESHOLD
-from fingerprint import (
+from core.fingerprint import (
     extract_spectral_features,
     build_fingerprint_from_samples,
     save_fingerprint,
@@ -145,4 +145,6 @@ def live_test(fingerprint: np.ndarray):
 
 
 if __name__ == "__main__":
+    import sys, os
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     calibrate()

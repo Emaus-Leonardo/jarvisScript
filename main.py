@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # ============================================================
-# JARVIS - Entry Point (CLI)
+# JARVIS - Entry Point (GUI)
 # ============================================================
-# Executa o Jarvis no terminal (sem interface gráfica).
-# Uso: python jarvis.py
+# Executa a interface gráfica do Jarvis.
+# Uso: python main.py
 
 import os
 import sys
@@ -11,13 +11,9 @@ import sys
 # Garante que o diretório do projeto é o working directory
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
-from core.detector import JarvisDetector
-
-
-def main():
-    detector = JarvisDetector()
-    detector.start()
+from gui.app import JarvisGUI
 
 
 if __name__ == "__main__":
-    main()
+    app = JarvisGUI()
+    app.run()

@@ -139,6 +139,7 @@ def save_fingerprint(fingerprint: np.ndarray, samples_info: list[dict] = None, p
         "samples_info": samples_info or [],
         "fingerprint": fingerprint.tolist(),
     }
+    os.makedirs(os.path.dirname(path) or ".", exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     print(f"[+] Fingerprint salvo em {path}")

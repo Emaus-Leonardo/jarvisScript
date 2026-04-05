@@ -3,14 +3,16 @@
 # JARVIS - Build Script (.exe)
 # ============================================================
 # Gera o executável usando PyInstaller.
-# Uso: python build.py
+# Uso: python scripts/build.py (a partir da raiz do projeto)
 
 import subprocess
 import sys
 import os
 
 def main():
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    # Garante que estamos na raiz do projeto
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    os.chdir(project_root)
 
     # Verifica se PyInstaller está instalado
     try:
@@ -30,11 +32,9 @@ def main():
         "--windowed",
         "--name", "Jarvis",
         "--add-data", "config.py;.",
-        "--add-data", "fingerprint.py;.",
-        "--add-data", "calibrate.py;.",
-        "--add-data", "voice.py;.",
-        "--add-data", "actions.py;.",
-        "--add-data", "jarvis.py;.",
+        "--add-data", "core;core",
+        "--add-data", "gui;gui",
+        "--add-data", "data;data",
         # Hidden imports que PyInstaller pode não detectar
         "--hidden-import", "sounddevice",
         "--hidden-import", "speech_recognition",
@@ -43,7 +43,7 @@ def main():
         "--hidden-import", "scipy.signal",
         "--hidden-import", "scipy.fft",
         # Entry point
-        "gui.py",
+        "main.py",
     ]
 
     result = subprocess.run(cmd)
@@ -55,7 +55,7 @@ def main():
         print("  Executavel: dist/Jarvis.exe")
         print("=" * 50)
         print()
-        print("  IMPORTANTE: Copie o clap_fingerprint.json")
+        print("  IMPORTANTE: Copie a pasta data/ (com clap_fingerprint.json)")
         print("  para a mesma pasta do Jarvis.exe")
         print("  (ou calibre novamente pela interface)")
     else:
